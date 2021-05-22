@@ -1,43 +1,23 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, View, Image } from "react-native";
-import { Game, Home } from "@screens";
-import {
-  useFonts,
-  BlackHanSans_400Regular,
-} from "@expo-google-fonts/black-han-sans";
-import {
-  useFonts as useNanumFonts,
-  NanumGothic_400Regular,
-  NanumGothic_700Bold,
-  NanumGothic_800ExtraBold,
-} from "@expo-google-fonts/nanum-gothic";
-import AppLoading from "expo-app-loading";
-import { Text } from "@components";
+import React, { ReactElement } from "react";
+import { StyleSheet, View } from "react-native";
+import { Text, AppBootstrap } from "@components";
 
-export default function App() {
-  const [fontLoaded] = useFonts({
-    BlackHanSans_400Regular,
-  });
-  const [nanumFontsLoaded] = useNanumFonts({
-    NanumGothic_400Regular,
-    NanumGothic_700Bold,
-    NanumGothic_800ExtraBold,
-  });
-  if (!nanumFontsLoaded || !fontLoaded) return <AppLoading />;
+export default function App(): ReactElement {
   return (
-    <View style={styles.container}>
-      <Text
-        style={{
-          fontSize: 25,
-        }}
-        onPress={() => {
-          alert(true);
-        }}
-      >
-        Nesting is <Text weight={800}>working </Text>well
-      </Text>
-    </View>
+    <AppBootstrap>
+      <View style={styles.container}>
+        <Text
+          style={{
+            fontSize: 25,
+          }}
+          onPress={() => {
+            alert(true);
+          }}
+        >
+          Nesting is <Text weight={800}>working </Text>well
+        </Text>
+      </View>
+    </AppBootstrap>
   );
 }
 
