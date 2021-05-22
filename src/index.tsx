@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import { Game, Home } from "@screens";
 import {
   useFonts,
@@ -13,6 +13,8 @@ import {
   NanumGothic_800ExtraBold,
 } from "@expo-google-fonts/nanum-gothic";
 import AppLoading from "expo-app-loading";
+import { Text } from "@components";
+
 export default function App() {
   const [fontLoaded] = useFonts({
     BlackHanSans_400Regular,
@@ -28,10 +30,12 @@ export default function App() {
       <Text
         style={{
           fontSize: 25,
-          fontFamily: "NanumGothic_400Regular",
+        }}
+        onPress={() => {
+          alert(true);
         }}
       >
-        Hello World
+        Nesting is <Text weight={800}>working </Text>well
       </Text>
     </View>
   );
