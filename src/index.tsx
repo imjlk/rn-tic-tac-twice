@@ -12,7 +12,7 @@ import {
   NanumGothic_700Bold,
   NanumGothic_800ExtraBold,
 } from "@expo-google-fonts/nanum-gothic";
-
+import AppLoading from "expo-app-loading";
 export default function App() {
   const [fontLoaded] = useFonts({
     BlackHanSans_400Regular,
@@ -22,7 +22,7 @@ export default function App() {
     NanumGothic_700Bold,
     NanumGothic_800ExtraBold,
   });
-  if (!nanumFontsLoaded || !fontLoaded) return null;
+  if (!nanumFontsLoaded || !fontLoaded) return <AppLoading />;
   return (
     <View style={styles.container}>
       <Text
