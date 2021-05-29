@@ -4,7 +4,7 @@ import styles from "./game.styles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackNavigatorParams } from "@config/navigator";
 import { BackgroundGradient, Board } from "@components";
-import { BoardState, getBestMove, isEmpty, isTerminal } from "@utils";
+import { BoardState, Cell, getBestMove, isEmpty, isTerminal } from "@utils";
 import { Audio } from "expo-av";
 import * as Haptics from "expo-haptics";
 
@@ -25,6 +25,9 @@ export default function Game({ navigation }: GameProps): ReactElement {
   const [isHumanMaximizing, setIsHumanMaximizing] = useState<boolean>(true);
   const popSoundRef = useRef<Audio.Sound | null>(null);
   const pop2SoundRef = useRef<Audio.Sound | null>(null);
+  const winSoundRef = useRef<Audio.Sound | null>(null);
+  const lossSoundRef = useRef<Audio.Sound | null>(null);
+  const drawSoundRef = useRef<Audio.Sound | null>(null);
 
   const gameResult = isTerminal(state);
 
@@ -51,10 +54,49 @@ export default function Game({ navigation }: GameProps): ReactElement {
     setTurn("BOT");
   };
 
+  const getWinner = (winnerSymbol: Cell): "HUMAN" | "BOT" | "DRAW" => {
+    if (winnerSymbol === "x") {
+      return isHumanMaximizing ? "HUMAN" : "BOT";
+    }
+    if (winnerSymbol === "o") {
+      return isHumanMaximizing ? "BOT" : "HUMAN";
+    }
+
+    return "DRAW";
+  };
+
   useEffect(() => {
     if (gameResult) {
       // handle game finished
-      alert("Game Over");
+
+      const winner = getWinner(gameResult.winner);
+      if (winner === "HUMAN") {
+        try {
+          winSoundRef.current?.replayAsync();
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        } catch (error) {
+          console.log(error);
+        }
+        alert("You Won");
+      }
+      if (winner === "BOT") {
+        try {
+          lossSoundRef.current?.replayAsync();
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+        } catch (error) {
+          console.log(error);
+        }
+        alert("You Lost");
+      }
+      if (winner === "DRAW") {
+        try {
+          drawSoundRef.current?.replayAsync();
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+        } catch (error) {
+          console.log(error);
+        }
+        alert("It's a Draw");
+      }
     } else {
       if (turn === "BOT") {
         if (isEmpty(state)) {
@@ -67,7 +109,7 @@ export default function Game({ navigation }: GameProps): ReactElement {
           setIsHumanMaximizing(false);
           setTurn("HUMAN");
         } else {
-          const best = getBestMove(state, !isHumanMaximizing, 0, 1);
+          const best = getBestMove(state, !isHumanMaximizing, 0, -1);
           insertCell(best, isHumanMaximizing ? "o" : "x");
           setTurn("HUMAN");
         }
@@ -79,6 +121,9 @@ export default function Game({ navigation }: GameProps): ReactElement {
     // load sounds
     const popSoundObject = new Audio.Sound();
     const pop2SoundObject = new Audio.Sound();
+    const winSoundObject = new Audio.Sound();
+    const lossSoundObject = new Audio.Sound();
+    const drawSoundObject = new Audio.Sound();
 
     const loadSounds = async () => {
       /* eslint-disable @typescript-eslint/no-var-requires */
@@ -86,6 +131,12 @@ export default function Game({ navigation }: GameProps): ReactElement {
       popSoundRef.current = popSoundObject;
       await pop2SoundObject.loadAsync(require("@assets/pop-2.wav"));
       pop2SoundRef.current = pop2SoundObject;
+      await winSoundObject.loadAsync(require("@assets/win.wav"));
+      winSoundRef.current = winSoundObject;
+      await lossSoundObject.loadAsync(require("@assets/loss.wav"));
+      lossSoundRef.current = lossSoundObject;
+      await drawSoundObject.loadAsync(require("@assets/draw.wav"));
+      drawSoundRef.current = drawSoundObject;
     };
 
     loadSounds();
@@ -93,6 +144,9 @@ export default function Game({ navigation }: GameProps): ReactElement {
       // unload sounds
       popSoundObject && popSoundObject.unloadAsync();
       pop2SoundObject && pop2SoundObject.unloadAsync();
+      winSoundObject && winSoundObject.unloadAsync();
+      lossSoundObject && lossSoundObject.unloadAsync();
+      drawSoundObject && drawSoundObject.unloadAsync();
     };
   }, []);
 
