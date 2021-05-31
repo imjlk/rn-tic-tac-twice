@@ -1,6 +1,6 @@
 import React, { ReactElement, useRef } from "react";
 import { View, StyleSheet, Animated } from "react-native";
-import { BoardResult } from "@utils";
+import { BoardResult, colors } from "@utils";
 import { useEffect } from "react";
 
 type BoardLineProps = {
@@ -11,17 +11,16 @@ type BoardLineProps = {
 const style = StyleSheet.create({
   line: {
     position: "absolute",
-    backgroundColor: "#f03",
+    backgroundColor: colors.lightPurple,
   },
   vLine: {
-    width: 2,
+    width: 3,
   },
   hLine: {
-    height: 2,
+    height: 3,
   },
   dLine: {
-    width: 2,
-    height: "100%",
+    width: 3,
     top: 0,
     left: "50%",
   },

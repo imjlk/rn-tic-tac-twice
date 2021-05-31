@@ -3,7 +3,7 @@ import { View, TouchableOpacity } from "react-native";
 import Text from "../text";
 import { BoardState, BoardResult } from "@utils";
 import BoardLine from "./board-line";
-
+import styles from "./board.styles";
 type BoardProps = {
   state: BoardState;
   size: number;
@@ -21,45 +21,37 @@ export default function Board({
 }: BoardProps): ReactElement {
   return (
     <View
-      style={{
-        width: size,
-        height: size,
-        backgroundColor: "green",
-        flexDirection: "row",
-        flexWrap: "wrap",
-      }}
+      style={[
+        styles.board,
+        {
+          width: size,
+          height: size,
+        },
+      ]}
     >
       {state.map((cell, index) => {
         return (
           <TouchableOpacity
-            style={{
-              width: "33.3333%",
-              height: "33.3333%",
-              backgroundColor: "white",
-              borderWidth: 1,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            style={[styles.cell, styles[`cell${index}` as "cell"]]}
             key={index}
             disabled={cell !== null || disabled}
             onPress={() => onCellPressed && onCellPressed(index)}
           >
             <Text
-              style={{
-                fontSize: size / 8,
-              }}
+              style={[
+                styles.cellText,
+                {
+                  fontSize: size / 7,
+                },
+              ]}
             >
               {cell}
             </Text>
           </TouchableOpacity>
         );
       })}
-      {true && (
-        <BoardLine
-          size={size}
-          gameResult={{ winner: "o", diagonal: "MAIN", direction: "D" }}
-        />
-      )}
+      {gameResult && <BoardLine size={size} gameResult={gameResult} />}
+      {/* TODO: gameResult to Twice */}
     </View>
   );
 }
