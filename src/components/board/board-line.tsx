@@ -1,5 +1,5 @@
 import React, { ReactElement, useRef } from "react";
-import { View, StyleSheet, Animated } from "react-native";
+import { StyleSheet, Animated } from "react-native";
 import { BoardResult, colors } from "@utils";
 import { useEffect } from "react";
 

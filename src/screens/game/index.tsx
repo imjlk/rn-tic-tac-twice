@@ -12,6 +12,7 @@ import {
   isTerminal,
   useSounds,
 } from "@utils";
+import { useSettings, difficulties } from "@contexts/settings-context";
 
 type GameProps = {
   navigation: StackNavigationProp<StackNavigatorParams, "Game">;
@@ -36,6 +37,7 @@ export default function Game({ navigation }: GameProps): ReactElement {
     losses: 0,
   });
   const playSound = useSounds();
+  const { settings } = useSettings();
 
   const gameResult = isTerminal(state);
 
@@ -103,7 +105,12 @@ export default function Game({ navigation }: GameProps): ReactElement {
           setIsHumanMaximizing(false);
           setTurn("HUMAN");
         } else {
-          const best = getBestMove(state, !isHumanMaximizing, 0, -1);
+          const best = getBestMove(
+            state,
+            !isHumanMaximizing,
+            0,
+            parseInt(settings ? settings.difficulty : "-1")
+          );
           insertCell(best, isHumanMaximizing ? "o" : "x");
           setTurn("HUMAN");
         }
@@ -115,7 +122,10 @@ export default function Game({ navigation }: GameProps): ReactElement {
     <BackgroundGradient>
       <SafeAreaView style={styles.container}>
         <View>
-          <Text style={styles.difficulty}>Diffculty: Hard</Text>
+          <Text style={styles.difficulty}>
+            Diffculty:{" "}
+            {settings ? difficulties[settings.difficulty] : "Impossible"}
+          </Text>
         </View>
         <View style={styles.results}>
           <View style={styles.resultsBox}>
