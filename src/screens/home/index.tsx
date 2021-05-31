@@ -18,12 +18,18 @@ export default function Home({ navigation }: HomeProps): ReactElement {
             style={{
               marginBottom: 20,
             }}
-            onPress={() => navigation.navigate("Game", { gameId: "1" })}
             title="Single Player"
+            onPress={() => navigation.navigate("Game", { gameId: "1" })}
           />
           <Button style={{ marginBottom: 20 }} title="Multiplayer" />
           <Button style={{ marginBottom: 20 }} title="Login" />
-          <Button style={{ marginBottom: 20 }} title="Settings" />
+          <Button
+            style={{ marginBottom: 20 }}
+            title="Settings"
+            onPress={() => {
+              navigation.navigate("Settings");
+            }}
+          />
         </View>
       </ScrollView>
     </BackgroundGradient>
