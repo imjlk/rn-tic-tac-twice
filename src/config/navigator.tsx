@@ -4,14 +4,14 @@ import {
   createStackNavigator,
   StackNavigationOptions,
 } from "@react-navigation/stack";
-import { Home, Game, Settings } from "@screens";
+import { Home, Game, Settings, Login } from "@screens";
 import { colors } from "@utils";
-import { color } from "react-native-reanimated";
 
 export type StackNavigatorParams = {
   Home: undefined;
   Game: { gameId: string };
   Settings: undefined;
+  Login: undefined;
 };
 
 const Stack = createStackNavigator<StackNavigatorParams>();
@@ -50,6 +50,7 @@ export default function Navigator(): ReactElement {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="Login" component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );
