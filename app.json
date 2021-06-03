@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rn-tic-tac-toe-battle",
-    "slug": "rn-tic-tac-toe-battle",
+    "name": "rn-tic-tac-twice",
+    "slug": "rn-tic-tac-twice",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
