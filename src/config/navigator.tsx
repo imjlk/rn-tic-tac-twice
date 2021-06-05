@@ -4,7 +4,7 @@ import {
   createStackNavigator,
   StackNavigationOptions,
 } from "@react-navigation/stack";
-import { Home, Game, Settings, Login } from "@screens";
+import { Home, Game, Settings, Login, SignUp } from "@screens";
 import { colors } from "@utils";
 
 export type StackNavigatorParams = {
@@ -12,6 +12,7 @@ export type StackNavigatorParams = {
   Game: { gameId: string };
   Settings: undefined;
   Login: undefined;
+  SignUp: { username: string } | undefined;
 };
 
 const Stack = createStackNavigator<StackNavigatorParams>();
@@ -51,6 +52,11 @@ export default function Navigator(): ReactElement {
         />
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{ title: "Sign up" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

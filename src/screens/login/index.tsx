@@ -1,5 +1,10 @@
 import React, { ReactElement, useRef, useState } from "react";
-import { Alert, ScrollView, TextInput as NativeTextInput } from "react-native";
+import {
+  Alert,
+  ScrollView,
+  TextInput as NativeTextInput,
+  TouchableOpacity,
+} from "react-native";
 import { BackgroundGradient, Button, Text, TextInput } from "@components";
 import { Auth } from "aws-amplify";
 import styles from "./login.styles";
@@ -30,6 +35,9 @@ export default function Login({ navigation }: LoginProps): ReactElement {
       navigation.navigate("Home");
     } catch (error) {
       console.log(error);
+      if (error.code === "UserNotConfirmedException") {
+        navigation.navigate("SignUp", { username });
+      }
       Alert.alert("Error!", error.message || "An error has occurred.");
     }
     setLoading(false);
@@ -63,6 +71,15 @@ export default function Login({ navigation }: LoginProps): ReactElement {
         />
 
         <Button loading={loading} title="Login" onPress={login} />
+
+        <TouchableOpacity
+          style={styles.registerLinkWrap}
+          onPress={() => {
+            navigation.navigate("SignUp");
+          }}
+        >
+          <Text style={styles.registerLink}>Don&apos;t have account?</Text>
+        </TouchableOpacity>
       </ScrollView>
     </BackgroundGradient>
   );
