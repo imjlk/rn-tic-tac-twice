@@ -18,3 +18,26 @@ type Player
   name: String!
   email: AWSEmail!
 }
+
+type Game @model {
+  id: ID!
+  gameState: GameState!
+  owners: [String!]!
+  initiator: String!
+  turn: String!
+  boardState: [Symbol]!
+  winner: String
+}
+
+enum GameState {
+  REQUESTED
+  DECLINED
+  ACTIVE
+  FINISHED
+  CANCELLED
+}
+
+enum Symbol {
+  X
+  O
+}

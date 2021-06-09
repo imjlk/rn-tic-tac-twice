@@ -18,9 +18,9 @@ export const getBestMove = (
     // Base condition for recursive
     const terminalObject = isTerminal(state);
     if (terminalObject || depth === maxDepth) {
-      if (terminalObject && terminalObject.winner === "x") {
+      if (terminalObject && terminalObject.winner === "X") {
         return 100 - depth;
-      } else if (terminalObject && terminalObject.winner === "o") {
+      } else if (terminalObject && terminalObject.winner === "O") {
         return -100 + depth;
       }
       return 0;
@@ -30,7 +30,7 @@ export const getBestMove = (
       let best = -100;
       getAvailableMoves(state).forEach((index) => {
         const child: BoardState = [...state];
-        child[index] = "x";
+        child[index] = "X";
         // console.log(`Child board (x turn) (depth: ${depth})`);
         // printFormattedBoard(child);
         const childValue = getBestMove(child, false, depth + 1, maxDepth);
@@ -56,7 +56,7 @@ export const getBestMove = (
       let best = 100;
       getAvailableMoves(state).forEach((index) => {
         const child: BoardState = [...state];
-        child[index] = "o";
+        child[index] = "O";
         // console.log(`Child board (x turn) (depth: ${depth})`);
         // printFormattedBoard(child);
         const childValue = getBestMove(child, true, depth + 1, maxDepth);

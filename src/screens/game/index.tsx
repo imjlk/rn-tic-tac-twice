@@ -41,7 +41,7 @@ export default function Game({ navigation }: GameProps): ReactElement {
 
   const gameResult = isTerminal(state);
 
-  const insertCell = (cell: number, symbol: "x" | "o"): void => {
+  const insertCell = (cell: number, symbol: "X" | "O"): void => {
     const stateCopy: BoardState = [...state];
     if (stateCopy[cell] || isTerminal(stateCopy)) return;
 
@@ -49,22 +49,22 @@ export default function Game({ navigation }: GameProps): ReactElement {
     setState(stateCopy);
 
     try {
-      symbol === "x" ? playSound("pop1") : playSound("pop2");
+      symbol === "X" ? playSound("pop1") : playSound("pop2");
     } catch (error) {
       console.log(error);
     }
   };
   const handleOnCellPressed = (cell: number): void => {
     if (turn !== "HUMAN") return;
-    insertCell(cell, isHumanMaximizing ? "x" : "o");
+    insertCell(cell, isHumanMaximizing ? "X" : "O");
     setTurn("BOT");
   };
 
   const getWinner = (winnerSymbol: Cell): "HUMAN" | "BOT" | "DRAW" => {
-    if (winnerSymbol === "x") {
+    if (winnerSymbol === "X") {
       return isHumanMaximizing ? "HUMAN" : "BOT";
     }
-    if (winnerSymbol === "o") {
+    if (winnerSymbol === "O") {
       return isHumanMaximizing ? "BOT" : "HUMAN";
     }
 
@@ -101,7 +101,7 @@ export default function Game({ navigation }: GameProps): ReactElement {
             centerAndCorners[
               Math.floor(Math.random() * centerAndCorners.length)
             ];
-          insertCell(firstMove, "x");
+          insertCell(firstMove, "X");
           setIsHumanMaximizing(false);
           setTurn("HUMAN");
         } else {
@@ -111,7 +111,7 @@ export default function Game({ navigation }: GameProps): ReactElement {
             0,
             parseInt(settings ? settings.difficulty : "-1")
           );
-          insertCell(best, isHumanMaximizing ? "o" : "x");
+          insertCell(best, isHumanMaximizing ? "O" : "X");
           setTurn("HUMAN");
         }
       }
