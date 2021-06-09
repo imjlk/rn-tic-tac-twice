@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "api": {
+      "tictactwice": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
