@@ -2,6 +2,57 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getGame = /* GraphQL */ `
+  query GetGame($id: ID!) {
+    getGame(id: $id) {
+      id
+      gameState
+      owners
+      initiator
+      turn
+      boardState
+      winner
+      players {
+        items {
+          id
+          createdAt
+          gameID
+          playerUsername
+          owners
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listGames = /* GraphQL */ `
+  query ListGames(
+    $filter: ModelGameFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        gameState
+        owners
+        initiator
+        turn
+        boardState
+        winner
+        players {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getPlayer = /* GraphQL */ `
   query GetPlayer($username: String!) {
     getPlayer(username: $username) {
@@ -10,6 +61,17 @@ export const getPlayer = /* GraphQL */ `
       username
       name
       email
+      games {
+        items {
+          id
+          createdAt
+          gameID
+          playerUsername
+          owners
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -36,6 +98,9 @@ export const listPlayers = /* GraphQL */ `
         username
         name
         email
+        games {
+          nextToken
+        }
         createdAt
         updatedAt
       }

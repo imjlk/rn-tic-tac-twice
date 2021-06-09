@@ -2,6 +2,198 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreatePlayerGame = /* GraphQL */ `
+  subscription OnCreatePlayerGame {
+    onCreatePlayerGame {
+      id
+      createdAt
+      gameID
+      playerUsername
+      owners
+      game {
+        id
+        gameState
+        owners
+        initiator
+        turn
+        boardState
+        winner
+        players {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      updatedAt
+      player {
+        id
+        cognitoID
+        username
+        name
+        email
+        games {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const onUpdatePlayerGame = /* GraphQL */ `
+  subscription OnUpdatePlayerGame {
+    onUpdatePlayerGame {
+      id
+      createdAt
+      gameID
+      playerUsername
+      owners
+      game {
+        id
+        gameState
+        owners
+        initiator
+        turn
+        boardState
+        winner
+        players {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      updatedAt
+      player {
+        id
+        cognitoID
+        username
+        name
+        email
+        games {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const onDeletePlayerGame = /* GraphQL */ `
+  subscription OnDeletePlayerGame {
+    onDeletePlayerGame {
+      id
+      createdAt
+      gameID
+      playerUsername
+      owners
+      game {
+        id
+        gameState
+        owners
+        initiator
+        turn
+        boardState
+        winner
+        players {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      updatedAt
+      player {
+        id
+        cognitoID
+        username
+        name
+        email
+        games {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const onCreateGame = /* GraphQL */ `
+  subscription OnCreateGame {
+    onCreateGame {
+      id
+      gameState
+      owners
+      initiator
+      turn
+      boardState
+      winner
+      players {
+        items {
+          id
+          createdAt
+          gameID
+          playerUsername
+          owners
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateGame = /* GraphQL */ `
+  subscription OnUpdateGame {
+    onUpdateGame {
+      id
+      gameState
+      owners
+      initiator
+      turn
+      boardState
+      winner
+      players {
+        items {
+          id
+          createdAt
+          gameID
+          playerUsername
+          owners
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteGame = /* GraphQL */ `
+  subscription OnDeleteGame {
+    onDeleteGame {
+      id
+      gameState
+      owners
+      initiator
+      turn
+      boardState
+      winner
+      players {
+        items {
+          id
+          createdAt
+          gameID
+          playerUsername
+          owners
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreatePlayer = /* GraphQL */ `
   subscription OnCreatePlayer {
     onCreatePlayer {
@@ -10,6 +202,17 @@ export const onCreatePlayer = /* GraphQL */ `
       username
       name
       email
+      games {
+        items {
+          id
+          createdAt
+          gameID
+          playerUsername
+          owners
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -23,6 +226,17 @@ export const onUpdatePlayer = /* GraphQL */ `
       username
       name
       email
+      games {
+        items {
+          id
+          createdAt
+          gameID
+          playerUsername
+          owners
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -36,6 +250,17 @@ export const onDeletePlayer = /* GraphQL */ `
       username
       name
       email
+      games {
+        items {
+          id
+          createdAt
+          gameID
+          playerUsername
+          owners
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }

@@ -17,6 +17,20 @@ type Player
   username: String!
   name: String!
   email: AWSEmail!
+  games: [PlayerGame] @connection(keyName: "byPlayer", fields: ["username"])
+}
+
+type PlayerGame
+  @model(queries: null)
+  @key(name: "byGame", fields: ["gameID"])
+  @key(name: "byPlayer", fields: ["playerUsername", "createdAt"]) {
+  id: ID!
+  createdAt: String!
+  gameID: ID!
+  playerUsername: String!
+  owners: [String!]!
+  game: Game! @connection(fields: ["gameID"])
+  player: Player! @connection(fields: ["playerUsername"])
 }
 
 type Game @model {
@@ -27,6 +41,7 @@ type Game @model {
   turn: String!
   boardState: [Symbol]!
   winner: String
+  players: [PlayerGame] @connection(keyName: "byGame", fields: ["id"])
 }
 
 enum GameState {
