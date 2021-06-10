@@ -13,6 +13,17 @@ export const startGame = /* GraphQL */ `
     }
   }
 `;
+export const playMove = /* GraphQL */ `
+  mutation PlayMove($game: ID!, $index: Int!) {
+    playMove(game: $game, index: $index) {
+      id
+      gameState
+      turn
+      boardState
+      winner
+    }
+  }
+`;
 export const createPlayer = /* GraphQL */ `
   mutation CreatePlayer(
     $input: CreatePlayerInput!
