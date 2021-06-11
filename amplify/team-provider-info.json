@@ -30,7 +30,7 @@
         },
         "playMove": {
           "deploymentBucketName": "amplify-tictactwice-dev-134941-deployment",
-          "s3Key": "amplify-builds/playMove-4e70386e696456637a62-build.zip"
+          "s3Key": "amplify-builds/playMove-754a6f50645a664d516f-build.zip"
         }
       }
     }

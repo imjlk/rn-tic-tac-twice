@@ -753,6 +753,38 @@ export type ListGamesQuery = {
   } | null;
 };
 
+export type OnUpdateGameByIDSubscriptionVariables = {
+  id: string;
+};
+
+export type OnUpdateGameByIDSubscription = {
+  onUpdateGameByID?: {
+    __typename: "Game";
+    id: string;
+    gameState: GameState;
+    owners: Array<string>;
+    initiator: string;
+    turn: string;
+    boardState: Array<Symbol | null>;
+    winner?: string | null;
+    createdAt: string;
+    updatedAt: string;
+    players?: {
+      __typename: "ModelPlayerGameConnection";
+      items?: Array<{
+        __typename: "PlayerGame";
+        id: string;
+        createdAt: string;
+        gameID: string;
+        playerUsername: string;
+        owners: Array<string>;
+        updatedAt: string;
+      } | null> | null;
+      nextToken?: string | null;
+    } | null;
+  } | null;
+};
+
 export type OnCreatePlayerSubscription = {
   onCreatePlayer?: {
     __typename: "Player";
