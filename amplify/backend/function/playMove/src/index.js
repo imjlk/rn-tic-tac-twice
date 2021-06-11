@@ -138,7 +138,7 @@ exports.handler = async (event, context, callback) => {
       player: player,
     },
   });
-  console.log(updateGameResponse);
+
   // 6. return the updated game object.
   return updateGameResponse.data.updateGame;
 };

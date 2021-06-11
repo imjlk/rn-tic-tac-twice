@@ -54,7 +54,7 @@ exports.handler = async (event, context, callback) => {
   `;
 
   try {
-    const response = await graphqlClient.mutate({
+    const response = await graphqlClient.query({
       query,
       variables: {
         username: event.userName,

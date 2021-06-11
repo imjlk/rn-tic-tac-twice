@@ -18,11 +18,19 @@
       "function": {
         "postConfirmation": {
           "deploymentBucketName": "amplify-tictactwice-dev-134941-deployment",
-          "s3Key": "amplify-builds/postConfirmation-324c5551515a6b634132-build.zip"
+          "s3Key": "amplify-builds/postConfirmation-416c4569594c386a4851-build.zip"
         },
         "preAuth": {
           "deploymentBucketName": "amplify-tictactwice-dev-134941-deployment",
-          "s3Key": "amplify-builds/preAuth-694e464f422f6b4c6f42-build.zip"
+          "s3Key": "amplify-builds/preAuth-7a6f63626d52674a6d2f-build.zip"
+        },
+        "startGame": {
+          "deploymentBucketName": "amplify-tictactwice-dev-134941-deployment",
+          "s3Key": "amplify-builds/startGame-6a6b554c483853323444-build.zip"
+        },
+        "playMove": {
+          "deploymentBucketName": "amplify-tictactwice-dev-134941-deployment",
+          "s3Key": "amplify-builds/playMove-4e70386e696456637a62-build.zip"
         }
       }
     }
